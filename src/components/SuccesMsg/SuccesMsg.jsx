@@ -1,4 +1,4 @@
-import styles from './kontaktGitte.module.css'
+import styles from './succes.module.css'
 import { Link } from 'react-router-dom'
 
 function SuccesMsg() {

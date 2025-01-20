@@ -9,7 +9,8 @@ import {
     FaHandshakeSimple,
     FaCookieBite,
     FaHeart,
-    FaRegHeart
+    FaRegHeart,
+    FaTrash
 } from 'react-icons/fa6'
 
 import { 
@@ -30,5 +31,6 @@ export const icons = {
     'Cookie': <FaCookieBite />,
     'FullHeart': <FaHeart />,
     'EmptyHeart': <FaRegHeart />,
-    'ArrowDown': <IoIosArrowDown />
+    'ArrowDown': <IoIosArrowDown />,
+    'Remove': <FaTrash />
 }

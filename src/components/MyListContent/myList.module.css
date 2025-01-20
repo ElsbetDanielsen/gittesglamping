@@ -1,8 +1,12 @@
 .aktContainer {
-    height: 490vh;
+    height: 100%;
     background-color: #CED3CD;
-    margin-top: 10rem;
-    padding-top: 15rem;
+    padding-bottom: 3rem;
+
+    .ingenAktiviteter {
+        padding: 5rem;
+        font-size: 2rem;
+    }
 
     .aktContent {
         display: flex;
@@ -97,7 +101,7 @@
                     }
                 }
 
-                .heartDiv {
+                .removeDiv {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -108,11 +112,13 @@
                     width: 15%;
                     margin: 0 0 3rem 3rem;
 
-                    .heart {
-                        font-size: 1.5rem;
+                    .removeButton {
+                        background-color: transparent;
+                        border: none;
                         color: #fff;
-                        cursor: pointer;
+                        font-size: 1.3rem;
                         margin-top: 0.3rem;
+                        cursor: pointer;
                     }
                 }
             }

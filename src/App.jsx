@@ -12,7 +12,7 @@ import Backoffice from "./pages/Backoffice/Backoffice"
 import ProtectedRoute from "./components/ProtectedRoute"
 import useAuth from "./hooks/useAuth"
 import Login from "./components/Login/Login"
-import SuccesMsg from "./components/KontaktGitte/SuccesMsg"
+import SuccesMsg from "./components/SuccesMsg/SuccesMsg"
 
 
 function App() {
