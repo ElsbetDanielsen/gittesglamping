@@ -1,31 +1,65 @@
 import { useState } from 'react'
 import styles from './backoffice.module.css'
 import Logout from '../../components/Logout/Logout'
+import {useFetchActivities} from '../../hooks/useDataFetch'
 
 function BackofficeItems() {
     const [activeComponent, setActiveComponent] = useState(null)
     const [selectedActivity, setSelectedActivity] = useState(null)
+    const [title, setTitle] = useState("")
+    const [date, setDate] = useState("")
+    const [time, setTime] = useState("")
+    const [description, setDescription] = useState("")
+    const [image, setImage] = useState(null)
+    const [successMessage, setSuccessMessage] = useState("")
 
-    const activities = [
-        "Kanotur",
-        "Naturvandring",
-        "Yoga",
-        "Vinsmagning",
-        "Fællesbål",
-    ]
+    const {activities} = useFetchActivities()
+    console.log(activities)
 
-    const EditAktivitet = () => {
+    // Knapperne i toppen
+    const EditButtons = () => {
+        return (
+            <div className={styles.editButtons}>
+                <button onClick={() => setActiveComponent(null)} className={styles.editBtn}>
+                    Tilbage til frontend
+                </button>
+                <button onClick={() => setActiveComponent('edit')} className={styles.editBtn}>
+                    Rediger aktiviteter
+                </button>
+                <button onClick={() => setActiveComponent('add')} className={styles.editBtn}>
+                    Tilføj en aktivitet
+                </button>
+            </div>
+        )
+    }
+
+    // Styrer hvilket komponentet der er åbnet
+    const renderActiveComponent = () => {
+        switch (activeComponent) {
+            case 'edit':
+                return <EditActivity />
+            case 'add':
+                return <AddActivity isEditing={true} selectedActivity={selectedActivity} />
+            case 'update':
+                return <UpdateActivity />
+            default:
+                return null // Viser ingenting, hvis intet komponent er valgt
+        }
+    }
+
+    // Rediger aktivitet (update eller delete)
+    const EditActivity = () => {
         return (
             <div className={styles.editAktivitet}>
                 <h2>Rediger Aktivitet</h2>
-                {activities.map((activity) => (
-                    <div key={activity} className={styles.aktivitet}>
-                        <p>{activity}</p>
+                {activities?.map((activity) => (
+                    <div key={activity._id} className={styles.aktivitet}>
+                        <p>{activity.title}</p>
                         <div className={styles.updateButtons}>
                             <button
                                 onClick={() => {
                                     setSelectedActivity(activity)
-                                    setActiveComponent('update')
+                                    setActiveComponent('add')
                                 }}
                             >
                                 Opdater aktivitet
@@ -42,22 +76,19 @@ function BackofficeItems() {
         )
     }
 
-    const handleImageChange = (event) => {
-        setImage(event.target.files[0])
-    }
 
-    const AddAktivitet = () => {
+    // POST
+    const AddActivity = ({ isEditing, selectedActivity }) => {
+        console.log(isEditing, selectedActivity)
         /* const [formData, setFormData] = useState({ title: "", date: "", time: "", description: "", image: "" }) */
-        const [title, setTitle] = useState()
-        const [date, setDate] = useState()
-        const [time, setTime] = useState()
-        const [description, setDescription] = useState()
-        const [image, setImage] = useState()
-        const [successMessage, setSuccessMessage] = useState("")
     
-        const handleChange = (e) => {
+        /* const handleChange = (e) => {
             const { name, value } = e.target
             setFormData((prev) => ({ ...prev, [name]: value }))
+        } */
+
+        const handleImageChange = (event) => {
+            setImage(event.target.files[0])
         }
     
         const handleSubmit = async (e) => {
@@ -92,7 +123,7 @@ function BackofficeItems() {
 
         return (
             <div className={styles.editAktivitet}>
-                <h2>Tilføj en Aktivitet</h2>
+                {isEditing ? <h2>Opdater en Aktivitet</h2> : <h2>Tilføj en Aktivitet</h2>}
                 {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
                 <form onSubmit={handleSubmit} className={styles.editContent}>
                     <div className={styles.editInput}>
@@ -119,7 +150,7 @@ function BackofficeItems() {
                         <p>Tidspunkt</p>
                         <input 
                             type="text" 
-                            placeholder="Tilføj tidspunkt" 
+                            placeholder="Tilføj tidspunkt (Fra - til)" 
                             value={time}
                             onChange={(e) => setTime(e.target.value)}
                             required
@@ -140,21 +171,18 @@ function BackofficeItems() {
                         <input 
                             className={styles.noFileChosen} 
                             type="file" 
-                            value={image}
                             onChange={handleImageChange}
                             required
                         />
                     </div>
-                    <button type="submit" className={styles.aktivitetButton}>
-                        Tilføj ny aktivitet
-                    </button>
+                    {isEditing ? <button type="submit" className={styles.aktivitetButton}>Opdater en Aktivitet</button> : <button type="submit" className={styles.aktivitetButton}>Tilføj en Aktivitet</button>}
                 </form>
             </div>
         )
     }
 
-
-    const UpdateAktivitet = () => {
+    // PUT
+    /* const UpdateActivity = () => {
         return (
             <div className={styles.editAktivitet}>
                 <h2>Opdater Aktivitet - {selectedActivity}</h2>
@@ -183,41 +211,10 @@ function BackofficeItems() {
                 <button className={styles.aktivitetButton}>Opdater aktivitet</button>
             </div>
         )
-    }
+    } */
 
-
-    const EditButtons = () => {
-        return (
-            <div className={styles.editButtons}>
-                <button onClick={() => setActiveComponent(null)} className={styles.editBtn}>
-                    Tilbage til frontend
-                </button>
-                <button onClick={() => setActiveComponent('edit')} className={styles.editBtn}>
-                    Rediger aktiviteter
-                </button>
-                <button onClick={() => setActiveComponent('add')} className={styles.editBtn}>
-                    Tilføj en aktivitet
-                </button>
-            </div>
-        )
-    }
-
-
-    const renderActiveComponent = () => {
-        switch (activeComponent) {
-            case 'edit':
-                return <EditAktivitet />
-            case 'add':
-                return <AddAktivitet />
-            case 'update':
-                return <UpdateAktivitet />
-            default:
-                return null // Viser ingenting, hvis intet komponent er valgt
-        }
-    }
-
-
-    const handleDeleteActivity = (activity) => {
+    // DELETE
+    const DeleteActivity = (activity) => {
         console.log(`Sletning af aktivitet: ${activity}`)
         // Her kan du tilføje logik til at slette aktiviteten fra listen.
     }

@@ -54,7 +54,7 @@ function KontaktGitte() {
                     </div>
 
                     <button type="submit" className={styles.indsendButton}>
-                        <Link to='/succes' className={styles.linkBtn}>Indsend</Link>
+                        <Link to='/succes' className={styles.linkBtn} type='submit'>Indsend</Link>
                     </button>
                 </form>
             </div>

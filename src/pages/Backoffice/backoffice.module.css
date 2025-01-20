@@ -1,6 +1,6 @@
 /* Backoffice.jsx */
 .backofficeContainer {
-    height: 120vh;
+    height: 130vh;
     background-color: #2A4F57;
     padding-top: 7rem;
     padding-bottom: 6rem;
@@ -40,7 +40,7 @@
     margin-top: 3rem;
 }
 
-/* EditAktivitet */
+/* Edit/Add/UpdateActivity.jsx */
 .editAktivitet {
     display: flex;
     justify-content: center;
@@ -92,12 +92,12 @@
     }
 
     .aktivitetButton {
-        background-color: lightcoral;
-        border: none;
+        background-color: #ffffff55;
+        border: #000 solid 1px;
         padding: 0.5rem;
+        color: #fff;
         font-size: 1rem;
         cursor: pointer;
-        color: #000;
         text-decoration: none;
         width: 20rem;
         cursor: pointer;
