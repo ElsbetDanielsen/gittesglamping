@@ -1,3 +1,4 @@
+/* Mobile-first */
 .stayPakkerContainer {
     height: 300vh;
     background-color: #CED3CD;
@@ -9,6 +10,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        flex-wrap: wrap;
         padding-top: 8rem;
 
         .imgDiv {
@@ -81,5 +83,16 @@
                 text-decoration: none;
             }
         }
+    }
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+    .stayPakkerContainer {
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        padding-bottom: 5rem;
     }
 }

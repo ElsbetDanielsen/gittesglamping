@@ -1,3 +1,4 @@
+/* Mobile-first */
 .udtalelserContainer {
     height: 250vh;
     background-color: #CED3CD;
@@ -8,6 +9,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        flex-wrap: wrap;
 
         h2 {
             font-size: 4rem;
@@ -47,6 +49,21 @@
                 padding: 1rem 0 1rem 0;
                 color: #fff;
                 text-align: center;
+            }
+        }
+    }
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+    .udtalelserContainer {
+        height: 130vh;
+
+        .udtalelserContent {
+            .udtalelserColumns {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
             }
         }
     }

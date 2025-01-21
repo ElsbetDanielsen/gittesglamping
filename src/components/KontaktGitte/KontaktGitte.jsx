@@ -5,7 +5,7 @@ function KontaktGitte() {
 
     return (
         <div className={styles.kontaktContainer}>
-            <div>
+            <div className={styles.kontaktContent}>
                 <div className={styles.kontaktText}>
                     <h2>Vil du booke et ophold? Eller har du blot et spørgsmål?</h2>
                     <p>Så tøv ikke med at tage kontakt til os herunder. 
@@ -53,10 +53,11 @@ function KontaktGitte() {
                         />
                     </div>
 
-                    <button type="submit" className={styles.indsendButton}>
-                        <Link to='/succes' className={styles.linkBtn} type='submit'>Indsend</Link>
-                    </button>
+                    
                 </form>
+                <button type="submit" className={styles.indsendButton}>
+                    <Link to='/succes' className={styles.linkBtn} type='submit'>Indsend</Link>
+                </button>
             </div>
         </div>
     )

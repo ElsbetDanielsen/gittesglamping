@@ -1,3 +1,4 @@
+/* Mobile-first */
 .aktContainer {
     height: 490vh;
     background-color: #CED3CD;
@@ -9,6 +10,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        flex-wrap: wrap;
         padding-top: 8rem;
 
         .aktTitle {
@@ -137,5 +139,16 @@
                 }
             }
         }
+    }
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+    .aktContainer {
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        padding-bottom: 5rem;
     }
 }

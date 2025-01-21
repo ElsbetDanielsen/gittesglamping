@@ -6,6 +6,7 @@ function Aktivitet({ title, img, text, subtext }) {
   const { list, addToList, removeFromList } = useMyList()
   const isList = list.some((list) => list.title === title)
 
+  // Tilføj til Min Liste siden
   const handleHeartClick = () => {
     const activity = { title, img, text, subtext }
     if (isList) {
@@ -38,6 +39,7 @@ function Aktivitet({ title, img, text, subtext }) {
             </div>
           </div>
         </div>
+
         <div className={styles.læsMereButton}>
           <div className={styles.linkBtn}>
             Læs mere {icons['ArrowDown']}

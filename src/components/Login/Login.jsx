@@ -8,7 +8,7 @@ const Login = () => {
         <div className={styles.loginContainer}>
             <div className={styles.loginContent}>
                 <form className={styles.loginForm} onSubmit={signIn}>
-                    {error && <p style={{ color: "red" }}>{error}</p>}
+                    {error && <p className={styles.failedLogin}>{error}</p>}
                     <input 
                         type="email" 
                         onChange={(e) => setEmail(e.target.value)} 
