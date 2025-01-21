@@ -3,38 +3,43 @@ import { useFetchActivities } from "../../hooks/useFetch"
 import styles from "./backoffice.module.css"
 import Logout from "../../components/Logout/Logout"
 import EditActivity from "./EditActivities/EditActivity"
+import { Link } from "react-router-dom"
 
 function BackofficeItems() {
-  const [activeComponent, setActiveComponent] = useState(null)
-  const [selectedActivity, setSelectedActivity] = useState(null)
-  const { activities } = useFetchActivities()
+  const [activeComponent, setActiveComponent] = useState(null) // State for at styre, hvilket komponent der vises (alle aktiviteter, redigeringsformular, etc.)
+  const [selectedActivity, setSelectedActivity] = useState(null) // State for at holde styr på den valgte aktivitet, der skal redigeres
+  const { activities } = useFetchActivities() // Henter aktiviteter via custom hook
 
-  // DELETE
+  // Funktion til at slette en aktivitet (DELETE)
   const handleDeleteActivity = async (activity) => {
     try {
+      // Sender en DELETE-request til backend med aktivitetens ID
       const response = await fetch(
         `http://localhost:3042/activity/${activity._id}`,
         {
           method: "DELETE",
         }
       )
+      // Hvis requesten lykkes, nulstilles den valgte aktivitet, og vi går tilbage til "alle aktiviteter"
       if (response.ok) {
         setSelectedActivity(null);
         setActiveComponent("activities");
       }
     } catch (error) {
+      // Logger fejl, hvis der opstår en fejl under sletning
       console.error("Error deleting activity:", error)
     }
   }
 
-  // Knapperne i toppen
+  // Komponent til knapper i toppen (under Velkommen til backoffice)
   const EditButtons = () => (
     <div className={styles.editButtons}>
-      <button
-        onClick={() => setActiveComponent(null)}
+      <Link
+        /* onClick={() => setActiveComponent(null)} */
+        to="/"
         className={styles.editBtn}>
         Tilbage til frontend
-      </button>
+      </Link>
       <button
         onClick={() => setActiveComponent("activities")}
         className={styles.editBtn}>
@@ -43,16 +48,16 @@ function BackofficeItems() {
     </div>
   )
 
-  // Styrer hvilket komponent er åben
+  // Funktion til at rendere det aktive komponent baseret på "activeComponent" state
   const renderActiveComponent = () => {
     switch (activeComponent) {
-      case "edit":
+      case "edit": // Redigeringsvisning med den valgte aktivitet
         return (
           <EditActivity isEditing={true} selectedActivity={selectedActivity} />
         )
-      case "add":
+      case "add": // Visning til at tilføje en ny aktivitet
         return <EditActivity />
-      case "activities":
+      case "activities": // Liste over alle aktiviteter
         return (
           <ul className={styles.editActivities}>
             {activities?.map((act) => (
@@ -81,7 +86,7 @@ function BackofficeItems() {
           </ul>
         )
       default:
-        return null
+        return null // Hvis ingen komponent er valgt, vises der ingenting
     }
   }
 
