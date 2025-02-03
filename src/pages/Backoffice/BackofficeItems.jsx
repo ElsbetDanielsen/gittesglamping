@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useFetchActivities } from "../../hooks/useFetch"
+import { useFetchActivities } from "../../hooks/useFetchActivities"
 import styles from "./backoffice.module.css"
 import Logout from "../../components/Logout/Logout"
 import EditActivity from "./EditActivities/EditActivity"
@@ -22,8 +22,8 @@ function BackofficeItems() {
       )
       // Hvis requesten lykkes, nulstilles den valgte aktivitet, og vi går tilbage til "alle aktiviteter"
       if (response.ok) {
-        setSelectedActivity(null);
-        setActiveComponent("activities");
+        setSelectedActivity(null)
+        setActiveComponent("activities")
       }
     } catch (error) {
       // Logger fejl, hvis der opstår en fejl under sletning

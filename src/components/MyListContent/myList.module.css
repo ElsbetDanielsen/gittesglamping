@@ -156,5 +156,9 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
         padding-bottom: 5rem;
+
+        .ingenAktiviteter {
+            padding: 2rem;
+        }
     }
 }

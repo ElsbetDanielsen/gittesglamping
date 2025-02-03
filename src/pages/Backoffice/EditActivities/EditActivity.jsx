@@ -33,17 +33,20 @@ const EditActivity = ({ isEditing = false, selectedActivity = null }) => {
     e.preventDefault() // Forhindrer standard handling for formularen
 
     // Opretter et FormData-objekt til at håndtere tekst- og fildata
-    const formData = new FormData()
+    const formData = new FormData() // new FormData() opretter et objekt, som vi kan bruge til at tilføje nøgle-værdi-par
+    // Hvis vi redigerer en eksisterende aktivitet, tilføjes dens ID
     if (isEditing) {
-      formData.append("_id", selectedActivity._id) // Tilføj ID'et, hvis vi redigerer
+      formData.append("_id", selectedActivity._id) // Tilføj ID'et for den aktivitet, der redigeres
     }
-    formData.append("title", title)
+    // Tilføj de øvrige felter til FormData
+    formData.append("title", title) // formData.append(key, value) bruges til at tilføje enten tekst eller filer
     formData.append("date", date)
     formData.append("time", time)
     formData.append("description", description)
 
+    // Hvis et billede er valgt, tilføj det også til FormData
     if (image) {
-      formData.append("file", image) // Tilføj billede, hvis der er valgt et
+      formData.append("file", image) // Tilføj billedet som en fil
     }
 
     // URL og metode afhænger af, om vi redigerer eller opretter en aktivitet

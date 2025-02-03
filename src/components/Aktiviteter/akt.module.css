@@ -1,9 +1,9 @@
 /* Mobile-first */
 .aktContainer {
-    height: 490vh;
+    height: 100%;
     background-color: #CED3CD;
     margin-top: 10rem;
-    padding-top: 15rem;
+    padding: 15rem 0 3rem 0;
 
     .aktContent {
         display: flex;
@@ -12,6 +12,7 @@
         flex-direction: column;
         flex-wrap: wrap;
         padding-top: 8rem;
+        gap: 2rem;
 
         .aktTitle {
             display: flex;
@@ -53,7 +54,7 @@
                 width: 100%;
                 height: 100%;
                 background-color: rgba(60, 60, 60, 0.613);
-                z-index: 1; 
+                z-index: 0; 
             }
         }
 
@@ -146,9 +147,18 @@
 @media (min-width: 768px) {
     .aktContainer {
         height: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
         padding-bottom: 5rem;
+
+        .aktiviteter {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            
+            .aktivitet {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
+        }
     }
 }

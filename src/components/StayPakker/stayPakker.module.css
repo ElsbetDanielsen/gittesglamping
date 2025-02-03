@@ -1,6 +1,6 @@
 /* Mobile-first */
 .stayPakkerContainer {
-    height: 300vh;
+    height: 100%;
     background-color: #CED3CD;
     margin-top: 10rem;
     padding-top: 15rem;
@@ -74,6 +74,7 @@
             border-radius: 3rem 0 3rem 0;
             cursor: pointer;
             margin-top: -3rem;
+            margin-bottom: 2rem;
             z-index: 100;
             
             .linkBtn {
@@ -90,9 +91,18 @@
 @media (min-width: 768px) {
     .stayPakkerContainer {
         height: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
         padding-bottom: 5rem;
+
+        .stays {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+
+            .stay {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
+        }
     }
 }

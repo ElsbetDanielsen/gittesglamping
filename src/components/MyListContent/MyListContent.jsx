@@ -9,18 +9,18 @@ function MyListContent() {
       <div className={styles.aktContainer}>
         {list.length > 0 ? (
           list.map((list) => (
-            <div key={list.title} className={styles.aktContent}>
+            <div key={list._id} className={styles.aktContent}>
               <div className={styles.aktTitle}>
                 <h3>{list.title}</h3>
               </div>
               <div className={styles.imgDiv}>
-                <img src={list.img} alt={list.title} />
+                <img src={list.image} alt={list.title} />
               </div>
               <div className={styles.aktText}>
                 <div className={styles.aktTextContent}>
                   <div className={styles.alleDage}>
-                    <p>{list.text}</p>
-                    <h4>{list.subtext}</h4>
+                    <p>{list.date}</p>
+                    <h4>{list.time}</h4>
                   </div>
                   <div className={styles.removeDiv}>
                     <button

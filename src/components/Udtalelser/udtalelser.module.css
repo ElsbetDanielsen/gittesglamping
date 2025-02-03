@@ -1,9 +1,9 @@
 /* Mobile-first */
 .udtalelserContainer {
-    height: 250vh;
+    height: 100%;
     background-color: #CED3CD;
 
-    .udtalelserContent {
+    .udtalelser {
         padding: 3rem;
         display: flex;
         justify-content: center;
@@ -23,32 +23,35 @@
             margin: 2rem 0 2rem 0;
         }
 
-        .udtalelserText {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background-color: #829B97;
-            padding: 2rem ;
-            border: #829B97 1px solid;
-            border-radius: 3rem 0 3rem 0;
-            margin: 2rem 0 2rem 0;
-
-            h3 {
-                font-size: 2rem;
-                font-weight: 100;
-                color: #fff;
-                text-align: center;
-            }
+        .udtalelserContent {
     
-            p {
-                font-family: 'Nanum Gothic', sans-serif;
-                font-size: 1rem;
-                font-weight: 100;
-                line-height: 1.5rem;
-                padding: 1rem 0 1rem 0;
-                color: #fff;
-                text-align: center;
+            .udtalelserText {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background-color: #829B97;
+                padding: 2rem ;
+                border: #829B97 1px solid;
+                border-radius: 3rem 0 3rem 0;
+                margin: 2rem 0 2rem 0;
+    
+                h3 {
+                    font-size: 2rem;
+                    font-weight: 100;
+                    color: #fff;
+                    text-align: center;
+                }
+        
+                p {
+                    font-family: 'Nanum Gothic', sans-serif;
+                    font-size: 1rem;
+                    font-weight: 100;
+                    line-height: 1.5rem;
+                    padding: 1rem 0 1rem 0;
+                    color: #fff;
+                    text-align: center;
+                }
             }
         }
     }
@@ -60,10 +63,11 @@
         height: 130vh;
 
         .udtalelserContent {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            
             .udtalelserColumns {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
+                padding: 0 2rem 0 2rem;
             }
         }
     }
